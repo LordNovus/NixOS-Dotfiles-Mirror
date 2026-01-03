@@ -1,25 +1,26 @@
 { config, lib, pkgs, ... }:
 
 let
-  qc71_slimbook_laptop = config.boot.kernelPackages.callPackage
+  slimbook-keyboard = config.boot.kernelPackages.callPackage
     (
       { stdenv, kernel, fetchFromGitHub }:
       stdenv.mkDerivation {
-        pname = "qc71_slimbook_laptop";
-        version = "unstable-030126";
+        pname = "slimbook-keyboard";
+        version = "0.0";
 
         src = fetchFromGitHub {
           owner = "Slimbook-Team";
-          repo = "qc71_laptop";
-          rev = "slimbook";
-          sha256 = "08ysbpr9mq6j2zg4qfm0d3dh16zf908mkf40gbwfm2ms9fd6jfpf";
+          repo = "slimbook-keyboard-dkms";
+          rev = "master";
+          sha256 = "0d9yx6ipcm5b0pxir6pvywfzki7pcfs4azyzwzdaq98pm73fps3a"; # Get this next
         };
+
+        sourceRoot = "source/slimbook_keyboard-0.0"; # Important: point to the module subdirectory
 
         nativeBuildInputs = kernel.moduleBuildDependencies;
 
-        makeFlags = kernel.makeFlags ++ [
+        makeFlags = [
           "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-          "INSTALL_MOD_PATH=${placeholder "out"}"
         ];
 
         buildPhase = ''
@@ -35,10 +36,9 @@ let
         '';
 
         meta = with lib; {
-          description = "Linux kernel platform driver for Slimbook laptops based on QC71";
-          homepage = "https://github.com/Slimbook-Team/qc71_laptop";
-          license = licenses.gpl2Only;
-          maintainers = [ ];
+          description = "Keyboard backlight module for Slimbook Essential/Elemental models";
+          homepage = "https://github.com/Slimbook-Team/slimbook-keyboard-dkms";
+          license = licenses.gpl3Plus;
           platforms = platforms.linux;
         };
       }
@@ -61,12 +61,12 @@ in
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Add slimbook kernel modules
-  boot.extraModulePackages = [ qc71_slimbook_laptop ];
-  boot.kernelModules = [ "qc71_laptop" ];
+  boot.extraModulePackages = [ slimbook-keyboard ];
+  boot.kernelModules = [ "clevo_platform" ];
 
   # udev rules for user access
   services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="leds", KERNEL=="qc71_laptop::kbd_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness", GROUP="video"
+    ACTION=="add", SUBSYSTEM=="leds", KERNEL=="clevo_platform::kbd_backlight*", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness", GROUP="video"
   '';
 
   networking.hostName = "slimbook-nixos"; # Define your hostname.
