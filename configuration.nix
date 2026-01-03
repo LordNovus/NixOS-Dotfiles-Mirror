@@ -1,5 +1,50 @@
 { config, lib, pkgs, ... }:
 
+let
+  qc71_slimbook_laptop = config.boot.kernelPackages.callPackage
+    (
+      { stdenv, kernel, fetchFromGitHub }:
+      stdenv.mkDerivation {
+        pname = "qc71_slimbook_laptop";
+        version = "unstable-030126";
+
+        src = fetchFromGitHub {
+          owner = "Slimbook-Team";
+          repo = "qc71_laptop";
+          rev = "slimbook";
+          sha256 = "08ysbpr9mq6j2zg4qfm0d3dh16zf908mkf40gbwfm2ms9fd6jfpf";
+        };
+
+        nativeBuildInputs = kernel.moduleBuildDependencies;
+
+        makeFlags = kernel.makeFlags ++ [
+          "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+          "INSTALL_MOD_PATH=${placeholder "out"}"
+        ];
+
+        buildPhase = ''
+          runHook preBuild
+          make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$(pwd) modules
+          runHook postBuild
+        '';
+
+        installPhase = ''
+          runHook preInstall
+          make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$(pwd) INSTALL_MOD_PATH=$out modules_install
+          runHook postInstall
+        '';
+
+        meta = with lib; {
+          description = "Linux kernel platform driver for Slimbook laptops based on QC71";
+          homepage = "https://github.com/Slimbook-Team/qc71_laptop";
+          license = licenses.gpl2Only;
+          maintainers = [ ];
+          platforms = platforms.linux;
+        };
+      }
+    )
+    { };
+in
 {
 
   imports =
@@ -14,6 +59,15 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Add slimbook kernel modules
+  boot.extraModulePackages = [ qc71_slimbook_laptop ];
+  boot.kernelModules = [ "qc71_laptop" ];
+
+  # udev rules for user access
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="leds", KERNEL=="qc71_laptop::kbd_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness", GROUP="video"
+  '';
 
   networking.hostName = "slimbook-nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -134,6 +188,7 @@
     kitty
 
     # Command-line essentials
+    brightnessctl
     tree
     fzf
     git
