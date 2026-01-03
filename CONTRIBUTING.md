@@ -18,9 +18,7 @@ Thank you for your interest in contributing to this project! Please review the f
 ## Merge Process
 
 ### Merge Requests
-- All merge requests must target the `master` branch
-- Branches may be outdated as long as there are no direct conflicts with `master`
-- Provide a clear description of changes in the merge request
+- Branche developers should attempt to resolve all conflicts before submitting a merge request (use drafts if needed).
 - Include a proper changelog in the merge request description as per the default GitLab template
 - Update documentation where your changes affect user-facing features or functionality
 - Link any relevant issues or tickets
