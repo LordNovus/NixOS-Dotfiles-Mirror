@@ -8,12 +8,23 @@
       /etc/nixos/hardware-configuration.nix
     ];
 
+  # Add NUR
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Apply kernel modules for slimbook backlight controll
+  boot.extraModulePackages = [ config.boot.kernelPackages.qc71_slimbook_laptop ];
+  boot.kernelModules = [ "qc71_laptop" ];
 
   networking.hostName = "slimbook-nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
