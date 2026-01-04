@@ -1,5 +1,50 @@
 { config, lib, pkgs, ... }:
 
+let
+  slimbook-keyboard = config.boot.kernelPackages.callPackage
+    (
+      { stdenv, kernel, fetchFromGitHub }:
+      stdenv.mkDerivation {
+        pname = "slimbook-keyboard";
+        version = "0.0";
+
+        src = fetchFromGitHub {
+          owner = "Slimbook-Team";
+          repo = "slimbook-keyboard-dkms";
+          rev = "master";
+          sha256 = "0d9yx6ipcm5b0pxir6pvywfzki7pcfs4azyzwzdaq98pm73fps3a"; # Get this next
+        };
+
+        sourceRoot = "source/slimbook_keyboard-0.0"; # Important: point to the module subdirectory
+
+        nativeBuildInputs = kernel.moduleBuildDependencies;
+
+        makeFlags = [
+          "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+        ];
+
+        buildPhase = ''
+          runHook preBuild
+          make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$(pwd) modules
+          runHook postBuild
+        '';
+
+        installPhase = ''
+          runHook preInstall
+          make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$(pwd) INSTALL_MOD_PATH=$out modules_install
+          runHook postInstall
+        '';
+
+        meta = with lib; {
+          description = "Keyboard backlight module for Slimbook Essential/Elemental models";
+          homepage = "https://github.com/Slimbook-Team/slimbook-keyboard-dkms";
+          license = licenses.gpl3Plus;
+          platforms = platforms.linux;
+        };
+      }
+    )
+    { };
+in
 {
 
   imports =
@@ -14,6 +59,15 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Add slimbook kernel modules
+  boot.extraModulePackages = [ slimbook-keyboard ];
+  boot.kernelModules = [ "clevo_platform" ];
+
+  # udev rules for user access
+  # services.udev.extraRules = ''
+  #   ACTION=="add", SUBSYSTEM=="leds", KERNEL=="clevo_platform::kbd_backlight*", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness", GROUP="video"
+  # '';
 
   networking.hostName = "slimbook-nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -134,6 +188,7 @@
     kitty
 
     # Command-line essentials
+    # brightnessctl
     tree
     fzf
     git
