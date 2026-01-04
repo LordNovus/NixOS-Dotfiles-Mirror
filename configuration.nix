@@ -65,9 +65,9 @@ in
   boot.kernelModules = [ "clevo_platform" ];
 
   # udev rules for user access
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="leds", KERNEL=="clevo_platform::kbd_backlight*", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness", GROUP="video"
-  '';
+  # services.udev.extraRules = ''
+  #   ACTION=="add", SUBSYSTEM=="leds", KERNEL=="clevo_platform::kbd_backlight*", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness", GROUP="video"
+  # '';
 
   networking.hostName = "slimbook-nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -188,7 +188,7 @@ in
     kitty
 
     # Command-line essentials
-    brightnessctl
+    # brightnessctl
     tree
     fzf
     git
