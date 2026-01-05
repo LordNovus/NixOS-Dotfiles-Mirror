@@ -12,7 +12,8 @@
       system = "x86_64-linux";
     in
     {
-      nixosConfigurations.slimbook-nixos = nixpkgs.lib.nixosSystem {
+      # Change 'core-nixos' to desired hostname (also in configuration.nix)
+      nixosConfigurations.core-nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [

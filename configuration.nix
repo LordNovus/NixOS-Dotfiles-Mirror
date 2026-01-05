@@ -15,14 +15,15 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "slimbook-nixos"; # Define your hostname.
+  networking.hostName = "core-nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   programs.nm-applet.enable = true;
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
+  # Uncomment if system has bluetooth hardware
+  # hardware.bluetooth = {
+  #   enable = true;
+  #   powerOnBoot = true;
+  # };
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -48,9 +49,6 @@
     };
     pulse.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
 
   # Enable disk mounting
   services.udisks2 = {
