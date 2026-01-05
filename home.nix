@@ -4,10 +4,7 @@ let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
   configs = {
-    nvim = "nvim";
-    kitty = "kitty";
-    qtile = "qtile";
-    hypr = "hypr";
+    # Place custom configs for installed packages here...
   };
 in
 
@@ -19,8 +16,7 @@ in
     zsh = {
       enable = true;
       shellAliases = {
-        ls = "eza";
-        find = "fzf --preview 'bat --color=always {}'";
+        # Add custom aliases here...
       };
       autocd = true;
       autosuggestion = {
