@@ -2,15 +2,8 @@
   description = "My nixos setup for my slimbook laptop";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -19,7 +12,8 @@
       system = "x86_64-linux";
     in
     {
-      nixosConfigurations.slimbook-nixos = nixpkgs.lib.nixosSystem {
+      # Change 'core-nixos' to desired hostname (also in configuration.nix)
+      nixosConfigurations.core-nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
@@ -29,7 +23,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.novus = import ./home.nix;
+              users.user = import ./home.nix; # Change 'user' to desired username
               backupFileExtension = "backup";
               extraSpecialArgs = { inherit inputs; };
             };
