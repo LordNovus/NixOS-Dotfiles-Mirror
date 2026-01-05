@@ -24,35 +24,18 @@
     powerOnBoot = true;
   };
 
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
-
   # Set your time zone.
   time.timeZone = "Europe/London";
 
   # Desktop Environment settings
   services.displayManager.ly.enable = true;
-
-  services.xserver.enable = true;
-  services.xserver.windowManager.qtile = {
-    enable = true;
-    package = pkgs.python313Packages.qtile;
-    extraPackages = python313Packages: with pkgs.python313Packages; [
-      qtile-extras
-    ];
-  };
-
   services.desktopManager.cosmic.enable = true;
-
-  programs.hyprland.enable = true;
-
 
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      gutenprint
-      hplip
+      # Place printer drivers here...
     ];
   };
 
@@ -89,64 +72,24 @@
     description = "Oliver";
     extraGroups = [ "wheel" "networkmanager" "adbusers" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      # Programs
-      firefox
-
-      # Themes
-      papirus-icon-theme
-      gruvbox-plus-icons
-
-      # Command-line
-      tealdeer
-      nitch
-      bat
-      ffmpeg
-      git-lfs
-      eza
+      # Add user packages here...
     ];
-  };
-
-  # Neovim
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    vimAlias = true;
-  };
-
-  # Replace cd commands
-  programs.zoxide = {
-    enable = true;
-    flags = [ "--cmd cd" ];
   };
 
   # Enable zsh
   programs.zsh.enable = true;
 
-  # Enable android interactions
-  programs.adb.enable = true;
-
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs; [
-    # Basic utitlities
-    libreoffice
-    kitty
-
-    # Command-line essentials
-    # brightnessctl
-    tree
-    fzf
-    git
-    jq
-    wget
+    # List system packages here...
   ];
 
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      nerd-fonts.hack
-      nerd-fonts.departure-mono
+      # List additional fonts here...
     ];
   };
 
