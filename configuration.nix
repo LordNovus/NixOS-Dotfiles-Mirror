@@ -1,50 +1,5 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
-let
-  slimbook-keyboard = config.boot.kernelPackages.callPackage
-    (
-      { stdenv, kernel, fetchFromGitHub }:
-      stdenv.mkDerivation {
-        pname = "slimbook-keyboard";
-        version = "0.0";
-
-        src = fetchFromGitHub {
-          owner = "Slimbook-Team";
-          repo = "slimbook-keyboard-dkms";
-          rev = "master";
-          sha256 = "0d9yx6ipcm5b0pxir6pvywfzki7pcfs4azyzwzdaq98pm73fps3a"; # Get this next
-        };
-
-        sourceRoot = "source/slimbook_keyboard-0.0"; # Important: point to the module subdirectory
-
-        nativeBuildInputs = kernel.moduleBuildDependencies;
-
-        makeFlags = [
-          "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-        ];
-
-        buildPhase = ''
-          runHook preBuild
-          make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$(pwd) modules
-          runHook postBuild
-        '';
-
-        installPhase = ''
-          runHook preInstall
-          make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$(pwd) INSTALL_MOD_PATH=$out modules_install
-          runHook postInstall
-        '';
-
-        meta = with lib; {
-          description = "Keyboard backlight module for Slimbook Essential/Elemental models";
-          homepage = "https://github.com/Slimbook-Team/slimbook-keyboard-dkms";
-          license = licenses.gpl3Plus;
-          platforms = platforms.linux;
-        };
-      }
-    )
-    { };
-in
 {
 
   imports =
@@ -60,53 +15,28 @@ in
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Add slimbook kernel modules
-  boot.extraModulePackages = [ slimbook-keyboard ];
-  boot.kernelModules = [ "clevo_platform" ];
-
-  # udev rules for user access
-  # services.udev.extraRules = ''
-  #   ACTION=="add", SUBSYSTEM=="leds", KERNEL=="clevo_platform::kbd_backlight*", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness", GROUP="video"
-  # '';
-
-  networking.hostName = "slimbook-nixos"; # Define your hostname.
+  networking.hostName = "core-nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   programs.nm-applet.enable = true;
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
+  # Uncomment if system has bluetooth hardware
+  # hardware.bluetooth = {
+  #   enable = true;
+  #   powerOnBoot = true;
+  # };
 
   # Set your time zone.
   time.timeZone = "Europe/London";
 
   # Desktop Environment settings
   services.displayManager.ly.enable = true;
-
-  services.xserver.enable = true;
-  services.xserver.windowManager.qtile = {
-    enable = true;
-    package = pkgs.python313Packages.qtile;
-    extraPackages = python313Packages: with pkgs.python313Packages; [
-      qtile-extras
-    ];
-  };
-
   services.desktopManager.cosmic.enable = true;
-
-  programs.hyprland.enable = true;
-
 
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      gutenprint
-      hplip
+      # Place printer drivers here...
     ];
   };
 
@@ -120,16 +50,13 @@ in
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
   # Enable disk mounting
   services.udisks2 = {
     enable = true;
   };
   programs.gnome-disks.enable = true;
 
-  # Localshend over wifi
+  # Localsend over wifi
   programs.localsend.enable = true;
 
   # Enable flakes 
@@ -137,70 +64,31 @@ in
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.zsh;
-  users.users.novus = {
+  users.users.user = {
+    # Change 'user' to desired username
     isNormalUser = true;
     useDefaultShell = true;
-    description = "Oliver";
-    extraGroups = [ "wheel" "networkmanager" "adbusers" ]; # Enable ‘sudo’ for the user.
+    description = "USER"; # Change to desired user display name
+    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      # Programs
-      firefox
-
-      # Themes
-      papirus-icon-theme
-      gruvbox-plus-icons
-
-      # Command-line
-      tealdeer
-      nitch
-      bat
-      ffmpeg
-      git-lfs
-      eza
+      # Add user packages here...
     ];
-  };
-
-  # Neovim
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    vimAlias = true;
-  };
-
-  # Replace cd commands
-  programs.zoxide = {
-    enable = true;
-    flags = [ "--cmd cd" ];
   };
 
   # Enable zsh
   programs.zsh.enable = true;
 
-  # Enable android interactions
-  programs.adb.enable = true;
-
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs; [
-    # Basic utitlities
-    libreoffice
-    kitty
-
-    # Command-line essentials
-    # brightnessctl
-    tree
-    fzf
-    git
-    jq
-    wget
+    # List system packages here...
   ];
 
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      nerd-fonts.hack
-      nerd-fonts.departure-mono
+      # List additional fonts here...
     ];
   };
 
