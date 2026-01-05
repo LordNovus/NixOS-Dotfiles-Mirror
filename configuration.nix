@@ -56,7 +56,7 @@
   };
   programs.gnome-disks.enable = true;
 
-  # Localshend over wifi
+  # Localsend over wifi
   programs.localsend.enable = true;
 
   # Enable flakes 
