@@ -146,6 +146,7 @@ in
       # Programs
       firefox
       keypunch
+      anki
 
       # Themes
       papirus-icon-theme
