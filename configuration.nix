@@ -145,6 +145,7 @@ in
     packages = with pkgs; [
       # Programs
       firefox
+      keypunch
 
       # Themes
       papirus-icon-theme
