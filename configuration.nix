@@ -66,11 +66,12 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.zsh;
-  users.users.novus = {
+  users.users.user = {
+    # Change 'user' to desired username
     isNormalUser = true;
     useDefaultShell = true;
-    description = "Oliver";
-    extraGroups = [ "wheel" "networkmanager" "adbusers" ]; # Enable ‘sudo’ for the user.
+    description = "USER"; # Change to desired user display name
+    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       # Add user packages here...
     ];

@@ -22,7 +22,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.novus = import ./home.nix;
+              users.user = import ./home.nix; # Change 'user' to desired username
               backupFileExtension = "backup";
               extraSpecialArgs = { inherit inputs; };
             };

@@ -9,8 +9,9 @@ let
 in
 
 {
-  home.username = "novus";
-  home.homeDirectory = "/home/novus";
+  # Change both instances of 'user' to desired username
+  home.username = "user";
+  home.homeDirectory = "/home/user";
 
   programs = {
     zsh = {
