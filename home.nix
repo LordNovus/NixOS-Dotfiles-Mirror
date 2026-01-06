@@ -44,7 +44,6 @@ in
         theme = "alanpeabody";
       };
       initContent = ''
-        export PATH="$HOME/.local/bin:$PATH"
         nitch
       '';
     };
