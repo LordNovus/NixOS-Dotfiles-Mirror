@@ -8,6 +8,7 @@ let
     kitty = "kitty";
     qtile = "qtile";
     hypr = "hypr";
+    ranger = "range";
   };
 in
 
