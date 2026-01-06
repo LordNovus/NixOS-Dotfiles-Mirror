@@ -190,6 +190,9 @@ in
     git
     jq
     wget
+    zip
+    unzip
+    lzip
   ];
 
   fonts = {
