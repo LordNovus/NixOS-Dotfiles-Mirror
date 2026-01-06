@@ -183,6 +183,8 @@ in
     # Basic utitlities
     libreoffice
     kitty
+    peazip
+    ranger
 
     # Command-line essentials
     tree
