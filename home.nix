@@ -8,6 +8,7 @@ let
     kitty = "kitty";
     qtile = "qtile";
     hypr = "hypr";
+    ranger = "range";
   };
 in
 
@@ -44,7 +45,6 @@ in
         theme = "alanpeabody";
       };
       initContent = ''
-        export PATH="$HOME/.local/bin:$PATH"
         nitch
       '';
     };

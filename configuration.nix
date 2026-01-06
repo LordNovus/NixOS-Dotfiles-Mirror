@@ -178,19 +178,30 @@ in
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-  environment.pathsToLink = [ "/share/zsh" ];
-  environment.systemPackages = with pkgs; [
-    # Basic utitlities
-    libreoffice
-    kitty
+  environment = {
+    pathsToLink = [ "/share/zsh" ];
+    sessionVariables = {
+      RANGER_LOAD_DEFAULT_RC = "FALSE";
+      PATH = "$HOME/.local/bin:$PATH";
+    };
+    systemPackages = with pkgs; [
+      # Basic utitlities
+      libreoffice
+      kitty
+      peazip
+      ranger
 
-    # Command-line essentials
-    tree
-    fzf
-    git
-    jq
-    wget
-  ];
+      # Command-line essentials
+      tree
+      fzf
+      git
+      jq
+      wget
+      zip
+      unzip
+      lzip
+    ];
+  };
 
   fonts = {
     enableDefaultPackages = true;
