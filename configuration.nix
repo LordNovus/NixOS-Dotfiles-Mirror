@@ -133,6 +133,7 @@ in
       firefox
       keypunch
       anki
+      cava
 
       # Themes
       papirus-icon-theme
