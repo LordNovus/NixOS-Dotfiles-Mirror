@@ -131,21 +131,22 @@ in
     packages = with pkgs; [
       # Programs
       firefox
+      libreoffice
       keypunch
       anki
       cava
 
       # Themes
       papirus-icon-theme
-      gruvbox-plus-icons
 
       # Command-line
       tealdeer
-      nitch
       bat
       ffmpeg
       git-lfs
       eza
+      tree
+      fzf
     ];
   };
 
@@ -187,14 +188,10 @@ in
     ];
     systemPackages = with pkgs; [
       # Basic utitlities
-      libreoffice
       kitty
       peazip
-      ranger
 
       # Command-line essentials
-      tree
-      fzf
       git
       jq
       wget

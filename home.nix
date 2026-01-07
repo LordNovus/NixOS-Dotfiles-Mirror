@@ -62,6 +62,9 @@ in
     configs;
 
   home.packages = with pkgs; [
+    # zshrc requirement
+    nitch
+
     # Neovim dependencies 
     ripgrep
     nil
