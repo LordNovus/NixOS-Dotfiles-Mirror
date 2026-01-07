@@ -55,9 +55,9 @@ git checkout slimbook-stable
    - Git configuration and SSH keys
    - Personal preferences and application configs
 
-2. **Update hardware configuration**:
-   - While this config is designed for Slimbook Elemental 15, your specific hardware configuration may differ
-   - Merge or replace `hardware-configuration.nix` with your own (from `/etc/nixos/hardware-configuration.nix`)
+2. **Hardware configuration auto links**:
+   - This configuration is set up to automatically link to a pre-existing `/etc/nixos/hardware-configuration.nix`.
+   - Please ensure you have generated this config before running the build commands below.
 
 3. **Review installed packages**:
    - This config includes my personal toolset and applications
@@ -65,7 +65,7 @@ git checkout slimbook-stable
 
 4. **Adjust system settings**:
    - Timezone, locale, and regional settings
-   - Network configuration
+   - Network hostname, other network settings are non-declarative (using network-manager)
    - Any desktop environment customizations
 
 #### 3. Backup Current Configuration
