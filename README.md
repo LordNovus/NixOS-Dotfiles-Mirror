@@ -94,10 +94,6 @@ Make sure you fill in the placeholder path with the path you have cloned this re
 
 Some hardware-specific changes may require a reboot:
 
-```bash
-sudo reboot
-```
-
 ## Slimbook Elemental 15 Hardware Features
 
 This configuration addresses:
@@ -121,19 +117,20 @@ Need help with NixOS installation? See the [official NixOS installation guide](h
 To update the system:
 
 ```bash
-sudo nixos-rebuild switch --upgrade
+sudo nixos-rebuild switch --impure --flake ~/path/to/repo#slimbook-nixos
 ```
 
 To update channels:
 
 ```bash
-sudo nix-channel --update
+cd ~/path/to/repo
+sudo nix flake update
 ```
 
 ## Troubleshooting
 
 If you encounter issues:
-- Use `nixos-rebuild switch --show-trace` for detailed error output
+- Use `nixos-rebuild switch --flake ~/path/to/repo#slimbook-nixos --show-trace` for detailed error output
 - Check that Slimbook-specific drivers are loading correctly with `lsmod`
 - Review system logs: `journalctl -xb`
 - Consult the [NixOS manual](https://nixos.org/manual/nixos/stable/)
