@@ -81,7 +81,10 @@ in
 
   # Desktop Environment settings
   services.displayManager.ly.enable = true; # Switch to cosmic?
-  services.desktopManager.cosmic.enable = true;
+  services.desktopManager = {
+    cosmic.enable = true; # Cosmic desktop
+    plasma6.enable = true; # KDE Plasma desktop
+  };
 
 
   # Enable CUPS to print documents.
