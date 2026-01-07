@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   slimbook-keyboard = config.boot.kernelPackages.callPackage
@@ -80,20 +80,11 @@ in
   time.timeZone = "Europe/London";
 
   # Desktop Environment settings
-  services.displayManager.ly.enable = true;
-
-  services.xserver.enable = true;
-  services.xserver.windowManager.qtile = {
-    enable = true;
-    package = pkgs.python313Packages.qtile;
-    extraPackages = python313Packages: with pkgs.python313Packages; [
-      qtile-extras
-    ];
+  services.displayManager.ly.enable = true; # Switch to cosmic?
+  services.desktopManager = {
+    cosmic.enable = true; # Cosmic desktop
+    plasma6.enable = true; # KDE Plasma desktop
   };
-
-  services.desktopManager.cosmic.enable = true;
-
-  programs.hyprland.enable = true;
 
 
   # Enable CUPS to print documents.
@@ -140,20 +131,23 @@ in
     packages = with pkgs; [
       # Programs
       firefox
+      libreoffice
       keypunch
       anki
+      cava
 
       # Themes
       papirus-icon-theme
-      gruvbox-plus-icons
 
       # Command-line
+      gemini-cli
       tealdeer
-      nitch
       bat
       ffmpeg
       git-lfs
       eza
+      tree
+      fzf
     ];
   };
 
@@ -184,22 +178,30 @@ in
       RANGER_LOAD_DEFAULT_RC = "FALSE";
       PATH = "$HOME/.local/bin:$PATH";
     };
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      plasma-workspace-wallpapers
+      konsole
+      krdp
+      # ark
+      # okular
+      kate
+      ktexteditor
+    ];
     systemPackages = with pkgs; [
       # Basic utitlities
-      libreoffice
       kitty
       peazip
-      ranger
 
       # Command-line essentials
-      tree
-      fzf
       git
       jq
       wget
       zip
       unzip
       lzip
+
+      # Plasma plugins
+      inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     ];
   };
 
