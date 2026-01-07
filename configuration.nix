@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   slimbook-keyboard = config.boot.kernelPackages.callPackage
@@ -198,6 +198,9 @@ in
       zip
       unzip
       lzip
+
+      # Plasma plugins
+      inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     ];
   };
 
