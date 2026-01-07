@@ -140,6 +140,7 @@ in
       papirus-icon-theme
 
       # Command-line
+      gemini-cli
       tealdeer
       bat
       ffmpeg
