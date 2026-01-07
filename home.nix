@@ -11,8 +11,6 @@ let
 in
 
 {
-  imports = [ inputs.noctalia.homeModules.default ];
-
   home.username = "novus";
   home.homeDirectory = "/home/novus";
 
