@@ -135,6 +135,7 @@ in
       keypunch
       anki
       cava
+      protonvpn-gui
 
       # Themes
       papirus-icon-theme
