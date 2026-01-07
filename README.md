@@ -70,7 +70,7 @@ git checkout slimbook-stable
 
 #### 3. Backup Current Configuration
 
-Always backup your existing configuration before making changes:
+**Always** backup your existing configuration before making changes:
 
 ```bash
 sudo cp -r /etc/nixos /etc/nixos.backup
@@ -78,40 +78,19 @@ sudo cp -r /etc/nixos /etc/nixos.backup
 
 #### 4. Install the Configuration
 
-Choose one of the following methods to install your customized configuration:
+By default, this configuration is designed to be installed inside the user's home directory or a subdirectory. Then links to the user's pre-existing `hardware-configuration.nix`. If you have not modified the imports at the top of `configuration.nix` accordingly, then use the following commands to test and build your system:
 
-**Option 1: Copy files** (simpler, but not git-managed)
-```bash
-sudo cp -r * /etc/nixos/
-```
+**Test your system:**
+`sudo nixos-rebuild test --impure --flake ~/path/to/repo#slimbook-nixos --experimental-options "nix-command flakes"`
 
-**Option 2: Symlink** (keeps git integration for easier updates)
-```bash
-sudo rm -rf /etc/nixos
-sudo ln -s $(pwd) /etc/nixos
-```
+Make sure you fill in the placeholder path with the path you have cloned this repository into.
 
-#### 5. Test Your Changes
+**Commit to a rebuild:**
+`sudo nixos-rebuild switch --impure --flake ~/path/to/repo#slimbook-nixos --experimental-options "nix-command flakes"`
 
-Before making permanent changes, test your configuration:
+**Note:** For future updates, you can omit `--experimental-options "nix-command flakes"` as these options are enabled in the configuration itself.
 
-```bash
-sudo nixos-rebuild test
-```
-
-This will activate your configuration for the current session without making it the default on boot. If something goes wrong, a reboot will return you to your previous configuration.
-
-#### 6. Apply Permanently
-
-If the test is successful and everything works as expected:
-
-```bash
-sudo nixos-rebuild switch
-```
-
-This makes your new configuration the default.
-
-#### 7. Reboot if Needed
+#### 5. Reboot if Needed
 
 Some hardware-specific changes may require a reboot:
 
