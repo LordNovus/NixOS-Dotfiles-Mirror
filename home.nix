@@ -6,8 +6,6 @@ let
   configs = {
     nvim = "nvim";
     kitty = "kitty";
-    qtile = "qtile";
-    hypr = "hypr";
     ranger = "range";
   };
 in
@@ -48,79 +46,6 @@ in
         nitch
       '';
     };
-    noctalia-shell = {
-      enable = true;
-      settings = {
-        bar = {
-          density = "comfortable";
-          position = "top";
-          showCapsule = true;
-          floating = true;
-          widgets = {
-            left = [
-              {
-                id = "ControlCenter";
-                useDistroLogo = true;
-              }
-              {
-                id = "Workspace";
-                labelMode = "none";
-              }
-            ];
-            center = [
-              {
-                id = "ActiveWindow";
-                colorizeIcons = true;
-              }
-            ];
-            right = [
-              {
-                id = "Tray";
-                colorizeIcons = true;
-              }
-              {
-                id = "MediaMini";
-              }
-              {
-                id = "NotificationHistory";
-              }
-              {
-                id = "Battery";
-              }
-              {
-                id = "Volume";
-                displayMode = "alwaysShow";
-              }
-              {
-                id = "Brightness";
-              }
-              {
-                id = "Clock";
-              }
-            ];
-          };
-        };
-        ui = {
-          fontDefault = "DepartureMono Nerd Font";
-          fontFixed = "DepartureMono Nerd Font Mono";
-          fontDefaultScale = 0.85;
-        };
-        location = {
-          name = "Swindon, UK";
-          firstDayOfWeek = 0;
-        };
-        wallpaper = {
-          directory = "~/Pictures/Wallpapers/";
-          randomEnabled = false;
-        };
-        appLauncher.terminalCommand = "kitty -e";
-        dock.enabled = false;
-        colorSchemes = {
-          useWallpaperColors = true;
-          matugenSchemeType = "scheme-tonal-spot";
-        };
-      };
-    };
   };
 
   gtk = {
@@ -139,18 +64,6 @@ in
     configs;
 
   home.packages = with pkgs; [
-    # Hyprland config dependencies
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-    # Qtile config dependencies
-    yazi
-    (pkgs.dmenu.overrideAttrs
-      (_: {
-        src =
-          /home/novus/nixos-dotfiles/config/dmenu;
-        patches = [ ];
-      }))
-
     # Neovim dependencies 
     ripgrep
     nil

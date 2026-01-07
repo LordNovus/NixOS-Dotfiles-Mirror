@@ -80,20 +80,8 @@ in
   time.timeZone = "Europe/London";
 
   # Desktop Environment settings
-  services.displayManager.ly.enable = true;
-
-  services.xserver.enable = true;
-  services.xserver.windowManager.qtile = {
-    enable = true;
-    package = pkgs.python313Packages.qtile;
-    extraPackages = python313Packages: with pkgs.python313Packages; [
-      qtile-extras
-    ];
-  };
-
+  services.displayManager.ly.enable = true; # Switch to cosmic?
   services.desktopManager.cosmic.enable = true;
-
-  programs.hyprland.enable = true;
 
 
   # Enable CUPS to print documents.
