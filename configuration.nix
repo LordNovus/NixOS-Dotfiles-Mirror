@@ -184,8 +184,8 @@ in
       krdp
       # ark
       # okular
-      # kate / ktexteditor
-      # dolphin / baloo-widgets / dolphin-plugins
+      kate
+      ktexteditor
     ];
     systemPackages = with pkgs; [
       # Basic utitlities
