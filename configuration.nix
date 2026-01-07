@@ -175,6 +175,15 @@ in
       RANGER_LOAD_DEFAULT_RC = "FALSE";
       PATH = "$HOME/.local/bin:$PATH";
     };
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      plasma-workspace-wallpapers
+      konsole
+      krdp
+      # ark
+      # okular
+      # kate / ktexteditor
+      # dolphin / baloo-widgets / dolphin-plugins
+    ];
     systemPackages = with pkgs; [
       # Basic utitlities
       libreoffice
