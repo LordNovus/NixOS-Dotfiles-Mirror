@@ -8,7 +8,7 @@
 - Personal preferences, settings, and workflow tools
 - Customizations specific to my use case
 
-**This configuration is NOT a general template.** If you're looking for a starting template to build your own NixOS system, please use the [`core-stable`](../../tree/core-stable) branch instead.
+**This configuration is NOT a general template.** If you're looking for a starting template to build your own NixOS system, please use the [`core-stable`](https://gitlab.com/NovaCrypt/nixos-dotfiles) branch instead.
 
 ## Who This Branch Is For
 
@@ -17,7 +17,7 @@ This branch is intended for:
 - Users who want to see real-world NixOS configuration examples
 - Those interested in studying specific hardware integrations for Slimbook devices
 
-If you don't have a Slimbook Elemental 15 or want a more generic starting point, head over to the [`core-stable`](../../tree/core-stable) branch.
+If you don't have a Slimbook Elemental 15 or want a more generic starting point, head over to the [`core-stable`](https://gitlab.com/NovaCrypt/nixos-dotfiles) branch.
 
 ## What's Included
 
@@ -177,4 +177,4 @@ Found issues specific to Slimbook Elemental 15 hardware? Feel free to open an is
 
 ---
 
-**Remember**: If this isn't what you're looking for, check out the [`core-stable`](../../tree/core-stable) branch for a general-purpose template!
+**Remember**: If this isn't what you're looking for, check out the [`core-stable`](https://gitlab.com/NovaCrypt/nixos-dotfiles) branch for a general-purpose template!
