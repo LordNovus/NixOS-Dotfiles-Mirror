@@ -76,7 +76,7 @@ git checkout slimbook-stable
 sudo cp -r /etc/nixos /etc/nixos.backup
 ```
 
-#### 4. Install the Configuration
+#### 4. Build and Apply the Configuration
 
 By default, this configuration is designed to be installed inside the user's home directory or a subdirectory. Then links to the user's pre-existing `hardware-configuration.nix`. If you have not modified the imports at the top of `configuration.nix` accordingly, then use the following commands to test and build your system:
 
@@ -92,7 +92,7 @@ Make sure you fill in the placeholder path with the path you have cloned this re
 
 #### 5. Reboot if Needed
 
-Some hardware-specific changes may require a reboot:
+**Note**: Some hardware-specific changes may require a reboot.
 
 ## Slimbook Elemental 15 Hardware Features
 
