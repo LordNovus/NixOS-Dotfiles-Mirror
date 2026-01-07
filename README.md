@@ -23,10 +23,14 @@ If you don't have a Slimbook Elemental 15 or want a more generic starting point,
 
 This configuration includes:
 - Slimbook-specific hardware drivers and kernel modules
-- Power management optimizations for Slimbook hardware
 - Display, touchpad, and keyboard configurations tuned for the Elemental 15
 - My personal application suite and development environment
 - Custom keybindings and workflow optimizations
+
+## What's in the Works?
+
+Future updates are planned for:
+- Power management optimizations for Slimbook hardware
 
 ## Using This Configuration
 
@@ -118,11 +122,11 @@ sudo reboot
 ## Slimbook Elemental 15 Hardware Features
 
 This configuration addresses:
-- AMD Ryzen CPU optimizations
-- AMD GPU drivers and power management
+- AMD Ryzen CPU optimizations (Upcoming release)
+- AMD GPU drivers and power management (Upcoming release)
 - Touchpad and keyboard backlight
-- Battery life optimization
-- Thermal management
+- Battery life optimization (Upcoming release)
+- Thermal management (Upcoming release)
 - Display scaling and color profiles
 
 ## Prerequisites
@@ -170,10 +174,6 @@ Found issues specific to Slimbook Elemental 15 hardware? Feel free to open an is
 - [Slimbook Official Site](https://slimbook.es/)
 - [NixOS Hardware Repository](https://github.com/NixOS/nixos-hardware) - Community hardware configurations
 - [NixOS Discourse](https://discourse.nixos.org/)
-
-## License
-
-*(Add your license information here)*
 
 ---
 
