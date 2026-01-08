@@ -1,4 +1,7 @@
 return {
+    { -- Tracks time spent coding
+        'wakatime/vim-wakatime', lazy = false
+    },
     { -- This helps with php/html for indentation
         'captbaritone/better-indent-support-for-php-with-html',
     },
