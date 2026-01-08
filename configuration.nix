@@ -203,6 +203,9 @@ in
 
       # Plasma plugins
       inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+
+      # Background utitlities
+      sqlite
     ];
   };
 
