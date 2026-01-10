@@ -8,6 +8,14 @@ let
     kitty = "kitty";
     ranger = "range";
   };
+
+  # Fetch wallpapers from GitLab
+  nova-wallpapers = pkgs.fetchFromGitLab {
+    owner = "NovaCrypt";
+    repo = "nova-wallpapers";
+    rev = "dba82ad9565f709e00f540baec1f098f1b8a722e";
+    sha256 = "sha256-mKdkgYkhsnEU4kEbwdcWIJ1YW/B3SgevQCCpD9NAg6A=";
+  };
 in
 
 {
