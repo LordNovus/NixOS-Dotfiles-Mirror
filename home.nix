@@ -28,6 +28,7 @@ in
       shellAliases = {
         ls = "eza";
         find = "fzf --preview 'bat --color=always {}'";
+        opencode = "~/.opencode/bin/opencode";
       };
       autocd = true;
       autosuggestion = {
