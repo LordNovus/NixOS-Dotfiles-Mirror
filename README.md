@@ -68,6 +68,13 @@ git checkout slimbook-stable
    - Network hostname, other network settings are non-declarative (using network-manager)
    - Any desktop environment customizations
 
+5. **Change Wallpaper in Plasma**:
+   - Change filename in `plasma.workspace.wallpaper` in `home.nix`
+
+6. **Customising plasma**:
+   - Test changes using the standard system settings application
+   - To make changes permanent add them to `home.nix`
+
 #### 3. Backup Current Configuration
 
 **Always** backup your existing configuration before making changes:
