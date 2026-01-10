@@ -142,6 +142,7 @@ in
 
       # Command-line
       gemini-cli
+      wakatime-cli
       tealdeer
       bat
       ffmpeg
