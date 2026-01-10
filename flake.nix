@@ -13,6 +13,13 @@
       url = "github:taj-ny/kwin-effects-forceblur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Plasma Manager for declarative KDE configuration
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     let
@@ -32,6 +39,9 @@
               users.novus = import ./home.nix;
               backupFileExtension = "backup";
               extraSpecialArgs = { inherit inputs; };
+              sharedModules = [
+                inputs.plasma-manager.homeManagerModules.plasma-manager
+              ];
             };
           }
         ];
