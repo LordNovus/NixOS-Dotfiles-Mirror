@@ -47,6 +47,12 @@ in
     };
     obsidian = {
       enable = true;
+      vaults = {
+        Dotfiles = {
+          enable = true;
+          target = "Documents/.vaults/Dotfiles";
+        };
+      };
     };
   };
 
