@@ -153,6 +153,12 @@ in
     ];
   };
 
+  # Enable dynamic binaries
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [ ];
+  };
+
   # Neovim
   programs.neovim = {
     enable = true;
@@ -178,7 +184,7 @@ in
     pathsToLink = [ "/share/zsh" ];
     sessionVariables = {
       RANGER_LOAD_DEFAULT_RC = "FALSE";
-      PATH = "$HOME/.local/bin:$PATH";
+      PATH = "$HOME/.local/bin:/home/novus/.opencode/bin:$PATH";
     };
     plasma6.excludePackages = with pkgs.kdePackages; [
       plasma-workspace-wallpapers
