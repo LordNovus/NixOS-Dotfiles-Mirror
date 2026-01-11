@@ -121,6 +121,12 @@ in
   # Enable flakes 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Enable unfree predications for specific packages (Obsidian)
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "obsidian"
+  ];
+
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.zsh;
   users.users.novus = {

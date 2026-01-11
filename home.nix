@@ -45,6 +45,9 @@ in
         nitch
       '';
     };
+    obsidian = {
+      enable = true;
+    };
   };
 
   xdg.configFile = builtins.mapAttrs
@@ -57,6 +60,9 @@ in
   home.packages = with pkgs; [
     # zshrc requirement
     nitch
+
+    # KDE dependencies
+    kdePackages.qtstyleplugin-kvantum
 
     # Neovim dependencies 
     ripgrep
