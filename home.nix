@@ -53,6 +53,12 @@ in
           target = "Documents/.vaults/Dotfiles";
         };
       };
+      defaultSettings = {
+        app = {
+          vimMode = true;
+          defaultViewMode = "source";
+        };
+      };
     };
   };
 
