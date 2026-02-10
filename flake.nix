@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Plasma plugins...
     # kwin-effects-forceblur = {
     #   url = "github:taj-ny/kwin-effects-forceblur";
@@ -25,6 +30,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
+          ./noctalia.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
