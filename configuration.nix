@@ -81,10 +81,10 @@ in
 
   # Desktop Environment settings
   services.displayManager.ly.enable = true; # Switch to cosmic?
-  services.desktopManager = {
-    cosmic.enable = true; # Cosmic desktop
-    plasma6.enable = true; # KDE Plasma desktop
-  };
+  # services.desktopManager = {
+  #   cosmic.enable = true; # Cosmic desktop
+  #   plasma6.enable = true; # KDE Plasma desktop
+  # };
   programs.niri.enable = true;
 
 
@@ -139,10 +139,6 @@ in
       keypunch
       anki
       cava
-      protonvpn-gui
-
-      # Themes
-      papirus-icon-theme
 
       # Command-line
       gemini-cli
@@ -190,19 +186,22 @@ in
       RANGER_LOAD_DEFAULT_RC = "FALSE";
       PATH = "$HOME/.local/bin:/home/novus/.opencode/bin:$PATH";
     };
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      plasma-workspace-wallpapers
-      konsole
-      krdp
-      # ark
-      # okular
-      kate
-      ktexteditor
-    ];
+    # plasma6.excludePackages = with pkgs.kdePackages; [
+    #   plasma-workspace-wallpapers
+    #   konsole
+    #   krdp
+    #   # ark
+    #   # okular
+    #   kate
+    #   ktexteditor
+    # ];
     systemPackages = with pkgs; [
       # Basic utitlities
       kitty
-      peazip
+      kdePackages.ark
+      kdePackages.okular
+      kdePackages.dolphin
+      kdePackages.elisa
 
       # Command-line essentials
       git
@@ -219,7 +218,7 @@ in
       fuzzel
 
       # Plasma plugins
-      inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+      # inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     ];
   };
 
