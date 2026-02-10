@@ -215,6 +215,9 @@ in
       # xwayland support
       xwayland-satellite
 
+      # Run launcher
+      fuzzel
+
       # Plasma plugins
       inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     ];

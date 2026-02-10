@@ -12,9 +12,9 @@ input {
         tap
         // drag false
         // drag-lock
-        natural-scroll
-        // scroll-factor 1
-        // accel-speed 0.2
+        // natural-scroll
+        scroll-factor 2
+        accel-speed 0.5
         // accel-profile "flat"
         scroll-method "two-finger"
         disabled-on-external-mouse
@@ -43,18 +43,18 @@ output "eDP-1" {
 }
 
 layout {
-    gaps 8
+    gaps 12
     center-focused-column "on-overflow"
     preset-column-widths {
         proportion 0.66667
         proportion 0.5
     }
 
-    default-column-width { proportion 0.66667; }
+    default-column-width { proportion 0.5; }
 
     focus-ring {
         // off
-        width 4
+        width 2
 
         // Color of the ring on the active monitor.
         active-color "#7fc8ff"
