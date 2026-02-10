@@ -85,6 +85,7 @@ in
     cosmic.enable = true; # Cosmic desktop
     plasma6.enable = true; # KDE Plasma desktop
   };
+  programs.niri.enable = true;
 
 
   # Enable CUPS to print documents.
@@ -105,6 +106,9 @@ in
     };
     pulse.enable = true;
   };
+
+  # Enable policy kit for apps requiring root permission.
+  security.polkit.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -207,6 +211,9 @@ in
       zip
       unzip
       lzip
+
+      # xwayland support
+      xwayland-satellite
 
       # Plasma plugins
       inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
