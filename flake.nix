@@ -8,6 +8,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Flatpak
+    flatpaks.url = "github:in-a-dil-emma/declarative-flatpak/latest";
+
     # Plasma plugins...
     kwin-effects-forceblur = {
       url = "github:taj-ny/kwin-effects-forceblur";
