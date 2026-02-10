@@ -6,7 +6,7 @@ let
   configs = {
     nvim = "nvim";
     kitty = "kitty";
-    ranger = "range";
+    niri = "niri";
   };
 in
 
