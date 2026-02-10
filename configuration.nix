@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config
+, lib
+, pkgs
+, inputs
+, # flatpaks, 
+  ...
+}:
 
 let
   slimbook-keyboard = config.boot.kernelPackages.callPackage
@@ -46,11 +52,11 @@ let
     { };
 in
 {
-
   imports =
     [
       # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      # flatpaks.nixosModules.default
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -115,6 +121,17 @@ in
   };
   programs.gnome-disks.enable = true;
 
+  # Flatpaks
+  services.flatpak = {
+    enable = true;
+    # remotes = {
+    #   "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    # };
+    # packages = [
+    #   "flathub:app/com.modrinth.ModrinthApp//stable"
+    # ];
+  };
+
   # Localshend over wifi
   programs.localsend.enable = true;
 
@@ -142,6 +159,7 @@ in
       anki
       cava
       protonvpn-gui
+      # inkscape
 
       # Themes
       papirus-icon-theme
