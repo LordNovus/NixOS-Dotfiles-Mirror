@@ -31,6 +31,11 @@ input {
     focus-follows-mouse max-scroll-amount="25%"
 }
 
+cursor {
+    xcursor-theme "volantes-cursors"
+    xcursor-size 24
+}
+
 output "eDP-1" {
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
     // mode "1920x1080@120.030"

@@ -179,9 +179,9 @@ in
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment = {
     pathsToLink = [ "/share/zsh" ];
-    sessionVariables = {
-      RANGER_LOAD_DEFAULT_RC = "FALSE";
+    variables = {
       PATH = "$HOME/.local/bin:/home/novus/.opencode/bin:$PATH";
+      QS_ICON_THEME = "Vimix";
     };
     systemPackages = with pkgs; [
       # Basic utitlities
@@ -201,6 +201,10 @@ in
 
       # xwayland support
       xwayland-satellite
+
+      # Basic theming
+      volantes-cursors
+      vimix-icon-theme
     ];
   };
 
