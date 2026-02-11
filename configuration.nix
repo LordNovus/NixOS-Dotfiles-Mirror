@@ -135,6 +135,7 @@ in
       libreoffice
       keypunch
       anki
+      tauon
       cava
 
       # Command-line
@@ -189,7 +190,6 @@ in
       kitty
       kdePackages.ark
       kdePackages.okular
-      kdePackages.elisa
 
       # Command-line essentials
       git
