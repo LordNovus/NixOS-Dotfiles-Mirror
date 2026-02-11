@@ -185,10 +185,10 @@ in
     };
     systemPackages = with pkgs; [
       # Basic utitlities
+      nemo-with-extensions
       kitty
       kdePackages.ark
       kdePackages.okular
-      kdePackages.dolphin
       kdePackages.elisa
 
       # Command-line essentials
