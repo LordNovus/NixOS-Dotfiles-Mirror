@@ -81,10 +81,6 @@ in
 
   # Desktop Environment settings
   services.displayManager.ly.enable = true; # Switch to cosmic?
-  # services.desktopManager = {
-  #   cosmic.enable = true; # Cosmic desktop
-  #   plasma6.enable = true; # KDE Plasma desktop
-  # };
   programs.niri.enable = true;
 
 
@@ -187,15 +183,6 @@ in
       RANGER_LOAD_DEFAULT_RC = "FALSE";
       PATH = "$HOME/.local/bin:/home/novus/.opencode/bin:$PATH";
     };
-    # plasma6.excludePackages = with pkgs.kdePackages; [
-    #   plasma-workspace-wallpapers
-    #   konsole
-    #   krdp
-    #   # ark
-    #   # okular
-    #   kate
-    #   ktexteditor
-    # ];
     systemPackages = with pkgs; [
       # Basic utitlities
       kitty
@@ -214,9 +201,6 @@ in
 
       # xwayland support
       xwayland-satellite
-
-      # Plasma plugins
-      # inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     ];
   };
 

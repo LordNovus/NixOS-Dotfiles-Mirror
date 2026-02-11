@@ -13,12 +13,6 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Plasma plugins...
-    # kwin-effects-forceblur = {
-    #   url = "github:taj-ny/kwin-effects-forceblur";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     let
