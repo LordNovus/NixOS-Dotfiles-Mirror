@@ -37,7 +37,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.novus = import ./home.nix;
-              backupFileExtension = "backup";
+              backupFileExtension = "bak";
               extraSpecialArgs = { inherit inputs; };
             };
           }
