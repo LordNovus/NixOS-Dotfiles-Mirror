@@ -32,8 +32,8 @@ input {
 }
 
 cursor {
-    xcursor-theme "volantes-cursors"
-    xcursor-size 24
+    xcursor-theme "volantes_light_cursors"
+    xcursor-size 32
 }
 
 output "eDP-1" {

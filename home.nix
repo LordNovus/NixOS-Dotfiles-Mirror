@@ -73,14 +73,6 @@ in
     package = pkgs.vimix-icon-theme;
   };
 
-  # Cursor theme config
-  home.pointerCursor = {
-    enable = true;
-    name = "volantes-cursors";
-    package = pkgs.volantes-cursors;
-    size = 24;
-  };
-
   fonts.fontconfig.enable = true;
 
   home.stateVersion = "25.05";
