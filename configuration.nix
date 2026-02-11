@@ -205,6 +205,7 @@ in
       # Basic theming
       volantes-cursors
       vimix-icon-theme
+      pywalfox-native
     ];
   };
 
