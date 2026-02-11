@@ -135,6 +135,7 @@ in
     packages = with pkgs; [
       # Programs
       firefox
+      goofcord
       libreoffice
       keypunch
       anki
