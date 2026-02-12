@@ -140,7 +140,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    slowdown 1.5
 }
 
 window-rule {
@@ -150,22 +150,18 @@ window-rule {
 
 window-rule {
     match app-id=r#"firefox$"#
-    default-column-width { proportion 1.0; }
-}
-
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
+    default-column-width { proportion 0.66667; }
 }
 
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
     draw-border-with-background false
+}
+
+window-rule {
+    match app-id="goofcord"
+    default-column-width { proportion 0.66667; }
 }
 
 binds {

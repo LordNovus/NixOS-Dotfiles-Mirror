@@ -1,5 +1,5 @@
 hardware-configuration.nix
 AGENTS.md
-config/kitty/current-theme.conf
-config/kitty/themes/*
-config/qtile/__pycache__/*
+./config/kitty/current-theme.conf
+./config/kitty/themes/*
+./config/niri/noctalia.kdl
