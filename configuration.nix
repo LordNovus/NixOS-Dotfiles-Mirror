@@ -138,6 +138,20 @@ in
       tauon
       cava
 
+      # VTubing
+      gamescope
+      protonup-qt
+      steam-tui
+      kdePackages.kdenlive
+      obs-studio
+      obs-studio-plugins.obs-retro-effects
+
+      # Graphics
+      krita
+      pixelorama
+      inkscape
+      gimp3-with-plugins
+
       # Command-line
       gemini-cli
       wakatime-cli
@@ -150,6 +164,21 @@ in
       fzf
     ];
   };
+
+  # Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steamcmd"
+    "steam"
+    "steam-original"
+    "steam-unwrapped"
+    "steam-run"
+  ];
 
   # Enable dynamic binaries
   programs.nix-ld = {
