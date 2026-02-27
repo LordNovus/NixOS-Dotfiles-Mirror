@@ -145,7 +145,8 @@
         };
         colorSchemes = {
           useWallpaperColors = true;
-          schedulingMode = "location";
+          darkMode = true;
+          schedulingMode = "off";
           generationMethod = "faithful";
         };
         templates = {
