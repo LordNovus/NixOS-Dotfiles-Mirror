@@ -109,6 +109,20 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  # Japanese input method
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+        kdePackages.fcitx5-qt
+      ];
+    };
+  };
+
   # Enable disk mounting
   services.udisks2 = {
     enable = true;
@@ -212,6 +226,9 @@ in
     variables = {
       PATH = "$HOME/.local/bin:/home/novus/.opencode/bin:$PATH";
       QS_ICON_THEME = "Vimix";
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
     };
     systemPackages = with pkgs; [
       # Basic utitlities
@@ -219,6 +236,7 @@ in
       kitty
       kdePackages.ark
       kdePackages.okular
+      kdePackages.fcitx5-configtool
 
       # Command-line essentials
       git
