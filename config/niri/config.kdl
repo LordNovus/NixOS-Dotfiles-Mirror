@@ -123,6 +123,7 @@ layout {
 }
 
 spawn-at-startup "noctalia-shell"
+spawn-at-startup "fcitx5"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -165,8 +166,6 @@ window-rule {
 }
 
 binds {
-    Mod+Shift+Slash { show-hotkey-overlay; }
-
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+R hotkey-overlay-title="Run a Launcher Menu" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
     Mod+Slash { spawn-sh "noctalia-shell ipc call controlCenter toggle"; }
