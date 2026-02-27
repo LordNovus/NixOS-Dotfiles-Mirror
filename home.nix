@@ -54,6 +54,16 @@ in
     })
     configs;
 
+  # home.file = {
+  #   ".config/qtile" = {
+  #     source = "${builtins.fetchGit {
+  #       url = "https://gitlab.com/NovaCrypt/dotfiles";
+  #       rev = "5568a2ca8d2b73f1e0a6007ba2dbd133c10787f7";
+  #     }}/.config/qtile";
+  #     recursive = true;
+  #   };
+  # };
+
   home.packages = with pkgs; [
     # zshrc requirement
     nitch
