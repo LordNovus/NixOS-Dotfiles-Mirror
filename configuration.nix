@@ -243,6 +243,14 @@ in
     packages = with pkgs; [
       nerd-fonts.hack
       nerd-fonts.departure-mono
+      # ark-pixel-font # Pixel CJK font
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-sans-static
+      noto-fonts-cjk-serif
+      noto-fonts-cjk-serif-static
+      source-han-sans
+      source-han-serif
+      source-han-mono
     ];
   };
 
