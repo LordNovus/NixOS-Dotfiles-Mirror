@@ -81,10 +81,7 @@ in
 
   # Desktop Environment settings
   services.displayManager.ly.enable = true; # Switch to cosmic?
-  services.desktopManager = {
-    cosmic.enable = true; # Cosmic desktop
-    plasma6.enable = true; # KDE Plasma desktop
-  };
+  programs.niri.enable = true;
 
 
   # Enable CUPS to print documents.
@@ -106,8 +103,25 @@ in
     pulse.enable = true;
   };
 
+  # Enable policy kit for apps requiring root permission.
+  security.polkit.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
+
+  # Japanese input method
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+        kdePackages.fcitx5-qt
+      ];
+    };
+  };
 
   # Enable disk mounting
   services.udisks2 = {
@@ -131,14 +145,26 @@ in
     packages = with pkgs; [
       # Programs
       firefox
+      goofcord
       libreoffice
       keypunch
       anki
+      tauon
       cava
-      protonvpn-gui
 
-      # Themes
-      papirus-icon-theme
+      # VTubing
+      gamescope
+      protonup-qt
+      steam-tui
+      kdePackages.kdenlive
+      obs-studio
+      obs-studio-plugins.obs-retro-effects
+
+      # Graphics
+      krita
+      pixelorama
+      inkscape
+      gimp3-with-plugins
 
       # Command-line
       gemini-cli
@@ -152,6 +178,21 @@ in
       fzf
     ];
   };
+
+  # Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steamcmd"
+    "steam"
+    "steam-original"
+    "steam-unwrapped"
+    "steam-run"
+  ];
 
   # Enable dynamic binaries
   programs.nix-ld = {
@@ -182,23 +223,20 @@ in
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment = {
     pathsToLink = [ "/share/zsh" ];
-    sessionVariables = {
-      RANGER_LOAD_DEFAULT_RC = "FALSE";
+    variables = {
       PATH = "$HOME/.local/bin:/home/novus/.opencode/bin:$PATH";
+      QS_ICON_THEME = "Vimix";
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
     };
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      plasma-workspace-wallpapers
-      konsole
-      krdp
-      # ark
-      # okular
-      kate
-      ktexteditor
-    ];
     systemPackages = with pkgs; [
       # Basic utitlities
+      nemo-with-extensions
       kitty
-      peazip
+      kdePackages.ark
+      kdePackages.okular
+      kdePackages.fcitx5-configtool
 
       # Command-line essentials
       git
@@ -208,8 +246,13 @@ in
       unzip
       lzip
 
-      # Plasma plugins
-      inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+      # xwayland support
+      xwayland-satellite
+
+      # Basic theming
+      volantes-cursors
+      vimix-icon-theme
+      pywalfox-native
     ];
   };
 
@@ -218,6 +261,14 @@ in
     packages = with pkgs; [
       nerd-fonts.hack
       nerd-fonts.departure-mono
+      # ark-pixel-font # Pixel CJK font
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-sans-static
+      noto-fonts-cjk-serif
+      noto-fonts-cjk-serif-static
+      source-han-sans
+      source-han-serif
+      source-han-mono
     ];
   };
 
