@@ -151,6 +151,7 @@ in
       anki
       tauon
       cava
+      logseq
 
       # VTubing
       gamescope
