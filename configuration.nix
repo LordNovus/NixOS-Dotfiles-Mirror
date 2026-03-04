@@ -103,8 +103,16 @@ in
     pulse.enable = true;
   };
 
-  # Enable policy kit for apps requiring root permission.
-  security.polkit.enable = true;
+  # Set ssecurity settings...
+  security = {
+    sudo = {
+      extraConfig = ''
+        Defaults pwfeedback
+      '';
+    };
+    # Enable policy kit for apps requiring root permission.
+    polkit.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
