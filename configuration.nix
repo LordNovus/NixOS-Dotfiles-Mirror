@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   slimbook-keyboard = config.boot.kernelPackages.callPackage
@@ -151,7 +151,6 @@ in
       anki
       tauon
       cava
-      logseq
 
       # VTubing
       gamescope
