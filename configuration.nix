@@ -159,6 +159,7 @@ in
       anki
       tauon
       cava
+      picard
 
       # VTubing
       gamescope
