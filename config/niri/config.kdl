@@ -55,7 +55,7 @@ layout {
         proportion 0.5
     }
 
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.66667; }
 
     focus-ring {
         // off
@@ -147,11 +147,6 @@ animations {
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
-}
-
-window-rule {
-    match app-id=r#"firefox$"#
-    default-column-width { proportion 0.66667; }
 }
 
 window-rule {
