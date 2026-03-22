@@ -254,6 +254,8 @@ in
       zip
       unzip
       lzip
+      gnupg
+      pinentry-all
 
       # xwayland support
       xwayland-satellite
