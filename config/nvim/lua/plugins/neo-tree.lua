@@ -8,5 +8,10 @@ return {
             "nvim-tree/nvim-web-devicons", -- optional, but recommended
         },
         lazy = false,                      -- neo-tree will lazily load itself
+        ---@module 'neo-tree'
+        ---@type neotree.config
+        opts = {
+            close_if_last_window = true,
+        },
     }
 }
