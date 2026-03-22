@@ -12,7 +12,6 @@ return {
             vim.cmd.colorscheme "catppuccin"
             vim.cmd('hi Directory guibg=NONE')
             vim.cmd('hi SignColumn guibg=NONE')
-            enable_transparency()
         end
     },
     -- {
