@@ -1,5 +1,4 @@
-hardware-configuration.nix
 AGENTS.md
-./config/kitty/current-theme.conf
-./config/kitty/themes/*
-./config/niri/noctalia.kdl
+noctalia.*
+!noctalia.nix
+current-theme.conf
