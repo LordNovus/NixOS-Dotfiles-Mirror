@@ -145,19 +145,14 @@ animations {
 }
 
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
     draw-border-with-background false
 }
 
 window-rule {
-    match app-id="goofcord"
-    default-column-width { proportion 0.66667; }
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
 }
 
 binds {
