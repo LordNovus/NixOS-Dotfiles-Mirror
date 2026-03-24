@@ -180,6 +180,7 @@ in
       wakatime-cli
       tealdeer
       bat
+      yazi
       ffmpeg
       git-lfs
       eza
@@ -241,7 +242,6 @@ in
     };
     systemPackages = with pkgs; [
       # Basic utitlities
-      nemo-with-extensions
       kitty
       kdePackages.ark
       kdePackages.okular
