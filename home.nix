@@ -46,25 +46,40 @@ in
     };
     zsh = {
       enable = true;
-      shellAliases = {
-        ls = "eza";
-        find = "fzf --preview 'bat --color=always {}'";
-        opencode = "~/.opencode/bin/opencode";
-      };
+      enableCompletion = true;
       autocd = true;
       autosuggestion = {
         enable = true;
-        strategy = [ "history" ];
+        strategy = [ "completion" ];
       };
-      enableCompletion = true;
-      syntaxHighlighting.enable = true;
-      oh-my-zsh = {
-        enable = true;
-        theme = "alanpeabody";
+      history = {
+        expireDuplicatesFirst = true;
+        ignoreSpace = true;
       };
       initContent = ''
         nitch
       '';
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "eza"
+          "fzf"
+          "git"
+          "git-auto-fetch"
+          "gitignore"
+          "git-lfs"
+          "kitty"
+          "sudo"
+          "tldr"
+          "zoxide"
+        ];
+        theme = "alanpeabody";
+      };
+      shellAliases = {
+        find = "fzf --preview 'bat --color=always {}'";
+        opencode = "~/.opencode/bin/opencode";
+      };
+      syntaxHighlighting.enable = true;
     };
     git = {
       enable = true;

@@ -201,7 +201,9 @@ in
     };
     gnome-disks.enable = true; # Disk management utility
     localsend.enable = true; # Send files over local wifi
-    zsh.enable = true; # ZSH shell
+    zsh = {
+      enable = true; # ZSH shell
+    };
     yazi.enable = true; # File manager
     neovim = {
       # Text editor
