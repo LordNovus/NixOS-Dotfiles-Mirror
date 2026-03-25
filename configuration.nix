@@ -80,18 +80,6 @@ in
   # Desktop Environment settings
   programs.niri.enable = true;
 
-
-
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
-  };
-
   # Set ssecurity settings...
   security = {
     sudo = {

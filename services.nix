@@ -15,6 +15,16 @@
       };
     };
 
+    # Enable sound.
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+    };
+
     # Power profile & battery consumption controllers
     power-profiles-daemon.enable = true;
     upower.enable = true;
