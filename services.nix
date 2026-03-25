@@ -7,7 +7,7 @@
       enable = true;
       sddm = {
         enable = true;
-        theme = "${pkgs.sddm-astonaut}/share/sddm/themes/sddm-astonaut-theme";
+        theme = "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astonaut-theme";
         autoNumlock = true;
         wayland = {
           enable = true;
