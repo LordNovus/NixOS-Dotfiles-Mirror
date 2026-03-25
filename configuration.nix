@@ -215,11 +215,11 @@ in
   };
 
   fonts = {
+    # Font configurations
     enableDefaultPackages = true;
     packages = with pkgs; [
       nerd-fonts.hack
       nerd-fonts.departure-mono
-      # ark-pixel-font # Pixel CJK font
       noto-fonts-cjk-sans
       noto-fonts-cjk-sans-static
       noto-fonts-cjk-serif
@@ -230,7 +230,6 @@ in
     ];
   };
 
-  system.stateVersion = "25.05";
-
+  system.stateVersion = "25.05"; # Do not alter!
 }
 
