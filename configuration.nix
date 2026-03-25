@@ -51,8 +51,20 @@ in
     [
       # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-      ./services.nix
+      ./services.nix # System services
     ];
+
+  # Enable flakes 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Configure nixpkgs
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steamcmd"
+    "steam"
+    "steam-original"
+    "steam-unwrapped"
+    "steam-run"
+  ];
 
   # Boot configuration
   boot = {
@@ -68,22 +80,20 @@ in
     kernelModules = [ "clevo_platform" ];
   };
 
-  networking.hostName = "slimbook-nixos"; # Define your hostname.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  programs.nm-applet.enable = true;
+  networking = {
+    hostName = "slimbook-nixos"; # Hostname definition
+    networkmanager.enable = true;
+  };
 
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/London";
 
-  # Desktop Environment settings
-  programs.niri.enable = true;
 
-  # Set ssecurity settings...
+  # Set security settings...
   security = {
     sudo = {
       extraConfig = ''
@@ -94,8 +104,6 @@ in
     polkit.enable = true;
   };
 
-
-  # Japanese input method
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
@@ -109,15 +117,7 @@ in
     };
   };
 
-  programs.gnome-disks.enable = true;
 
-  # Localshend over wifi
-  programs.localsend.enable = true;
-
-  # Enable flakes 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.zsh;
   users.users.novus = {
     isNormalUser = true;
@@ -163,45 +163,32 @@ in
     ];
   };
 
-  # Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
+  programs = {
+    niri.enable = true;
+    gnome-disks.enable = true;
+    localsend.enable = true;
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+    };
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [ ];
+    };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
+    };
+    zoxide = {
+      enable = true;
+      flags = [ "--cmd cd" ];
+    };
+    zsh.enable = true;
+    adb.enable = true;
   };
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steamcmd"
-    "steam"
-    "steam-original"
-    "steam-unwrapped"
-    "steam-run"
-  ];
-
-  # Enable dynamic binaries
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [ ];
-  };
-
-  # Neovim
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    vimAlias = true;
-  };
-
-  # Replace cd commands
-  programs.zoxide = {
-    enable = true;
-    flags = [ "--cmd cd" ];
-  };
-
-  # Enable zsh
-  programs.zsh.enable = true;
-
-  # Enable android interactions
-  programs.adb.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
