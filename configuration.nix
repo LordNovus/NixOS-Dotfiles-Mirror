@@ -54,16 +54,19 @@ in
       ./services.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Boot configuration
+  boot = {
+    # Define boot-loader
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelPackages = pkgs.linuxPackages_latest; # Linux kernel
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Add slimbook kernel modules
-  boot.extraModulePackages = [ slimbook-keyboard ];
-  boot.kernelModules = [ "clevo_platform" ];
+    # Add support for slimbook keyboard backlight
+    extraModulePackages = [ slimbook-keyboard ];
+    kernelModules = [ "clevo_platform" ];
+  };
 
   networking.hostName = "slimbook-nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
