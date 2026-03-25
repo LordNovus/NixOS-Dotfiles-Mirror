@@ -188,6 +188,14 @@ in
       enable = true;
       enableVirtualCamera = true; # Enable virtual camera for special effects
       plugins = with pkgs.obs-studio-plugins; [
+        wlrobs # Wayland compat
+        pixel-art # Add pixel-art effects
+        obs-markdown # Add markdown sources
+        input-overlay # Overlay keystrokes
+        obs-freeze-filter # Freeze a source
+        obs-vintage-filter # Vintage film looks
+        obs-composite-blur # Blur effects
+        obs-pipewire-audio-capture # Captures PipeWire
         obs-retro-effects # Retro effect plugin
       ];
     };
