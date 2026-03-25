@@ -91,8 +91,6 @@ in
     polkit.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
 
   # Japanese input method
   i18n.inputMethod = {
