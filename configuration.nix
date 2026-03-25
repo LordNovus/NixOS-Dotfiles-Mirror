@@ -81,14 +81,6 @@ in
   programs.niri.enable = true;
 
 
-  # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [
-      gutenprint
-      hplip
-    ];
-  };
 
   # Enable sound.
   services.pipewire = {
