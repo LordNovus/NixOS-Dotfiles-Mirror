@@ -150,33 +150,33 @@ in
     };
     systemPackages = with pkgs; [
       # Basic utitlities
-      kitty
-      libreoffice
-      kdePackages.ark
-      kdePackages.okular
-      kdePackages.fcitx5-configtool
+      kitty # Terminal emulator
+      libreoffice # Office software
+      kdePackages.ark # Zip tool
+      kdePackages.okular # PDF viewer
+      kdePackages.fcitx5-configtool # Config tool for JP input
 
       # Command-line essentials
-      git
+      git # Git commands
       fzf # Fuzzy finder
       ffmpeg # Media formatter
       eza # `ls` alternative
       tree # It's `tree`
-      jq
-      tealdeer
-      wget
-      zip
-      unzip
-      lzip
+      jq # General dependency for many things
+      tealdeer # TLDR command
+      wget # Get from WWW
+      zip # zip utility
+      unzip # unzip utility
+      lzip # lzip command
 
       # xwayland support
-      xwayland-satellite
+      xwayland-satellite # xwayland for niri
 
       # Basic theming
-      volantes-cursors
-      vimix-icon-theme
-      pywalfox-native
-      sddm-astronaut
+      volantes-cursors # cursor theme
+      vimix-icon-theme # icon theme
+      pywalfox-native # firefox coloration
+      sddm-astronaut # login theme
     ];
   };
 
