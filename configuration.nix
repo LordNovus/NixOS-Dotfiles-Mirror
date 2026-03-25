@@ -78,7 +78,6 @@ in
   time.timeZone = "Europe/London";
 
   # Desktop Environment settings
-  services.displayManager.ly.enable = true; # Switch to cosmic?
   programs.niri.enable = true;
 
 
@@ -262,6 +261,7 @@ in
       volantes-cursors
       vimix-icon-theme
       pywalfox-native
+      sddm-astronaut
     ];
   };
 
