@@ -153,12 +153,9 @@ in
       # Basic utitlities
       kitty # Terminal emulator
       libreoffice # Office software
-      kdePackages.ark # Zip tool
-      kdePackages.okular # PDF viewer
       kdePackages.fcitx5-configtool # Config tool for JP input
 
       # Command-line essentials
-      git # Git commands
       fzf # Fuzzy finder
       ffmpeg # Media formatter
       eza # `ls` alternative
