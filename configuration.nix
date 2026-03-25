@@ -181,37 +181,36 @@ in
   };
 
   programs = {
-    gnupg.agent.enable = true;
-    yazi.enable = true;
-    git.enable = true;
-    bat.enable = true;
+    niri.enable = true; # Niri scrolling window manager
     obs-studio = {
+      # Open Broadcasting Studio
       enable = true;
-      enableVirtualCamera = true;
+      enableVirtualCamera = true; # Enable virtual camera for special effects
       plugins = with pkgs.obs-studio-plugins; [
-        obs-retro-effects
+        obs-retro-effects # Retro effect plugin
       ];
     };
-    firefox.enable = true;
-    niri.enable = true;
-    gnome-disks.enable = true;
-    localsend.enable = true;
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [ ];
-    };
-    git-lfs.enable = true;
+    gnome-disks.enable = true; # Disk management utility
+    localsend.enable = true; # Send files over local wifi
+    zsh.enable = true; # ZSH shell
+    yazi.enable = true; # File manager
     neovim = {
+      # Text editor
       enable = true;
       defaultEditor = true;
       vimAlias = true;
     };
     zoxide = {
+      # `cd` alternative
       enable = true;
-      flags = [ "--cmd cd" ];
+      flags = [ "--cmd cd" ]; # Alias `cd`
     };
-    zsh.enable = true;
-    adb.enable = true;
+    bat.enable = true; # `cat` alternative
+    git.enable = true; # It is git
+    git-lfs.enable = true; # Git large file storage
+    gnupg.agent.enable = true; # Encryption agent
+    nix-ld.enable = true; # Linter
+    adb.enable = true; # Android tools
   };
 
   fonts = {
