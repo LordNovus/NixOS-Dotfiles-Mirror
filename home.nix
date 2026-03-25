@@ -81,6 +81,9 @@ in
       };
       syntaxHighlighting.enable = true;
     };
+    yazi = {
+      enableZshIntegration = true;
+    };
     git = {
       enable = true;
       settings = {

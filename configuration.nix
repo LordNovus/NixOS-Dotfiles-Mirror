@@ -204,7 +204,15 @@ in
     zsh = {
       enable = true; # ZSH shell
     };
-    yazi.enable = true; # File manager
+    yazi = {
+      enable = true; # File manager
+      plugins = {
+        inherit (pkgs.yaziPlugins) git;
+        inherit (pkgs.yaziPlugins) sudo;
+        inherit (pkgs.yaziPlugins) mount;
+        inherit (pkgs.yaziPlugins) chmod;
+      };
+    };
     neovim = {
       # Text editor
       enable = true;
