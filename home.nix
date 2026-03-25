@@ -17,9 +17,12 @@ in
   programs = {
     git = {
       enable = true;
-      settings.user = {
-        name = "NovaCrypt";
-        email = "novacrypt0512@pm.me";
+      settings = {
+        user = {
+          name = "NovaCrypt";
+          email = "novacrypt0512@pm.me";
+        };
+        push.autoRemoteSetup = true;
       };
       lfs.enable = true;
     };
