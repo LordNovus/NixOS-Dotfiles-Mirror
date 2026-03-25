@@ -52,6 +52,7 @@ in
       # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       ./services.nix # System services
+      ./programs
     ];
 
   # Enable flakes 

@@ -14,17 +14,35 @@ in
   home.username = "novus";
   home.homeDirectory = "/home/novus";
 
+  # TODO: Set bookmarks
   programs = {
-    git = {
+    firefox = {
       enable = true;
-      settings = {
-        user = {
-          name = "NovaCrypt";
-          email = "novacrypt0512@pm.me";
+      profiles = {
+        novus = {
+          name = "Novus";
+          bookmarks.settings = [
+            {
+              name = "";
+              url = "";
+              toolbar = false;
+              tags = [ ];
+              keyword = "";
+            }
+            {
+              name = "folder";
+              bookmarks = [ ];
+            }
+          ];
+          containers = {
+            work = {
+              name = "Work";
+              color = "green";
+              icon = "briefcase";
+            };
+          };
         };
-        push.autoRemoteSetup = true;
       };
-      lfs.enable = true;
     };
     zsh = {
       enable = true;
@@ -47,6 +65,17 @@ in
       initContent = ''
         nitch
       '';
+    };
+    git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "NovaCrypt";
+          email = "novacrypt0512@pm.me";
+        };
+        push.autoRemoteSetup = true;
+      };
+      lfs.enable = true;
     };
   };
 
