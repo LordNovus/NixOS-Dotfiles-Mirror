@@ -125,27 +125,16 @@ in
         "adbusers" # Allow user access to android dev services
       ];
       packages = with pkgs; [
-        goofcord
-        keypunch
-        tauon
-        picard
-        kdePackages.kdenlive
-        obs-studio
-        obs-studio-plugins.obs-retro-effects
-        krita
-        pixelorama
-        inkscape
-        gimp3-with-plugins
-        gemini-cli
-        wakatime-cli
-        tealdeer
-        bat
-        yazi
-        ffmpeg
-        git-lfs
-        eza
-        tree
-        fzf
+        goofcord # Discord client
+        keypunch # Typing practice
+        tauon # Music player
+        picard # Music tag editor
+        kdePackages.kdenlive # Video editor
+        pixelorama # Pixel art creator
+        inkscape # Vector graphics
+        gimp3-with-plugins # Image editor
+        gemini-cli # AI in terminal
+        wakatime-cli # Time tracking software
       ]; # Install userspace packages
     };
   };
@@ -169,13 +158,16 @@ in
 
       # Command-line essentials
       git
+      fzf # Fuzzy finder
+      ffmpeg # Media formatter
+      eza # `ls` alternative
+      tree # It's `tree`
       jq
+      tealdeer
       wget
       zip
       unzip
       lzip
-      gnupg
-      pinentry-all
 
       # xwayland support
       xwayland-satellite
@@ -189,6 +181,17 @@ in
   };
 
   programs = {
+    gnupg.agent.enable = true;
+    yazi.enable = true;
+    git.enable = true;
+    bat.enable = true;
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-retro-effects
+      ];
+    };
     firefox.enable = true;
     niri.enable = true;
     gnome-disks.enable = true;
@@ -197,6 +200,7 @@ in
       enable = true;
       libraries = with pkgs; [ ];
     };
+    git-lfs.enable = true;
     neovim = {
       enable = true;
       defaultEditor = true;
