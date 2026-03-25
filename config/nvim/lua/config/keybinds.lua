@@ -47,7 +47,14 @@ end)
 
 -- NEOTREE
 vim.keymap.set("n", "<leader>cd", ":Neotree<CR>")
-vim.keymap.set("n", "<leader>cg", ":Neotree float git_status<CR>")
+
+-- GIT
+vim.keymap.set("n", "<leader>gs", ":Neotree float git_status<CR>")
+vim.keymap.set("n", "<leader>gc", ":Git commit -m ''<Left>")
+vim.keymap.set("n", "<leader>ga", ":Git add %<CR>")
+vim.keymap.set("n", "<leader>gA", ":Git add .<CR>")
+vim.keymap.set("n", "<leader>gp", ":Git push<CR>")
+vim.keymap.set("n", "<leader>gP", ":Git pull<CR>")
 
 -- BARBAR
 -- Moving around
