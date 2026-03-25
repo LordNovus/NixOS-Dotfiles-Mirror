@@ -51,6 +51,7 @@ in
     [
       # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      ./services.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -72,9 +73,6 @@ in
     enable = true;
     powerOnBoot = true;
   };
-
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/London";
