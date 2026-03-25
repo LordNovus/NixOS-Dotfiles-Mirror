@@ -214,7 +214,6 @@ in
       };
     };
     neovim = {
-      # Text editor
       enable = true;
       defaultEditor = true;
       vimAlias = true;
@@ -222,11 +221,14 @@ in
     zoxide = {
       # `cd` alternative
       enable = true;
+      enableZshIntegration = true;
       flags = [ "--cmd cd" ]; # Alias `cd`
     };
     bat.enable = true; # `cat` alternative
-    git.enable = true; # It is git
-    git-lfs.enable = true; # Git large file storage
+    git = {
+      enable = true; # It is git
+      lfs.enable = true;
+    };
     gnupg.agent.enable = true; # Encryption agent
     nix-ld.enable = true; # Linter
     adb.enable = true; # Android tools
