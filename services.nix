@@ -26,11 +26,16 @@
     };
 
     # Enable touchpad support (enabled default in most desktopManager).
-    services.libinput.enable = true;
+    libinput.enable = true;
 
     # Power profile & battery consumption controllers
     power-profiles-daemon.enable = true;
     upower.enable = true;
+
+    # Enable udisks2 services
+    udisks2 = {
+      enable = true;
+    };
 
     # Enable printing services
     printing = {

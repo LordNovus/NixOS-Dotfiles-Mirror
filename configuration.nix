@@ -106,10 +106,6 @@ in
     };
   };
 
-  # Enable disk mounting
-  services.udisks2 = {
-    enable = true;
-  };
   programs.gnome-disks.enable = true;
 
   # Localshend over wifi
