@@ -21,19 +21,18 @@ in
       profiles = {
         novus = {
           name = "Novus";
-          bookmarks.settings = [
-            {
-              name = "";
-              url = "";
-              toolbar = false;
-              tags = [ ];
-              keyword = "";
-            }
-            {
-              name = "folder";
-              bookmarks = [ ];
-            }
-          ];
+          # bookmarks.settings = [
+          #   {
+          #     name = "";
+          #     url = "";
+          #     tags = [ ];
+          #     keyword = "";
+          #   }
+          #   {
+          #     name = "folder";
+          #     bookmarks = [ ];
+          #   }
+          # ];
           containers = {
             work = {
               name = "Work";
