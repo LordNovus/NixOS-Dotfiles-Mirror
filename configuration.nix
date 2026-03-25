@@ -57,15 +57,6 @@ in
   # Enable flakes 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Configure nixpkgs
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steamcmd"
-    "steam"
-    "steam-original"
-    "steam-unwrapped"
-    "steam-run"
-  ];
-
   # Boot configuration
   boot = {
     # Define boot-loader
@@ -80,35 +71,25 @@ in
     kernelModules = [ "clevo_platform" ];
   };
 
+  # Configure network settings
   networking = {
     hostName = "slimbook-nixos"; # Hostname definition
-    networkmanager.enable = true;
+    networkmanager.enable = true; # Enable networkmanager
   };
 
+  # Configure bluetooth settings
+  # TODO: Fix bluetooth connectivity issues
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
 
-  time.timeZone = "Europe/London";
-
-
-  # Set security settings...
-  security = {
-    sudo = {
-      extraConfig = ''
-        Defaults pwfeedback
-      '';
-    };
-    # Enable policy kit for apps requiring root permission.
-    polkit.enable = true;
-  };
-
+  # Localization settings
   i18n.inputMethod = {
     enable = true;
-    type = "fcitx5";
+    type = "fcitx5"; # For Japanese character input
     fcitx5 = {
-      waylandFrontend = true;
+      waylandFrontend = true; # Wayland compatability
       addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
@@ -117,81 +98,58 @@ in
     };
   };
 
+  time.timeZone = "Europe/London"; # Set system timezone
 
-  users.defaultUserShell = pkgs.zsh;
-  users.users.novus = {
-    isNormalUser = true;
-    useDefaultShell = true;
-    description = "Oliver";
-    extraGroups = [ "wheel" "networkmanager" "adbusers" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      # Programs
-      firefox
-      goofcord
-      libreoffice
-      keypunch
-      anki
-      tauon
-      cava
-      picard
 
-      # VTubing
-      gamescope
-      protonup-qt
-      steam-tui
-      kdePackages.kdenlive
-      obs-studio
-      obs-studio-plugins.obs-retro-effects
-
-      # Graphics
-      krita
-      pixelorama
-      inkscape
-      gimp3-with-plugins
-
-      # Command-line
-      gemini-cli
-      wakatime-cli
-      tealdeer
-      bat
-      yazi
-      ffmpeg
-      git-lfs
-      eza
-      tree
-      fzf
-    ];
+  # Set security settings...
+  security = {
+    sudo = {
+      extraConfig = ''
+        Defaults pwfeedback
+      ''; # Enable password feedback '*'s. 
+    };
+    polkit.enable = true; # Allow apps to request root access popups
   };
 
-  programs = {
-    niri.enable = true;
-    gnome-disks.enable = true;
-    localsend.enable = true;
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
+  # User setup...
+  users = {
+    defaultUserShell = pkgs.zsh; # Set ddefaultUserShell to z-shell
+    users.novus = {
+      # Primary user settings
+      isNormalUser = true;
+      useDefaultShell = true;
+      description = "Oliver"; # For various displays (DisplayManager, Lock Screen)
+      extraGroups = [
+        "wheel" # Allow user to use `sudo` in terminal
+        "networkmanager" # Allow user to configure their network
+        "adbusers" # Allow user access to android dev services
+      ];
+      packages = with pkgs; [
+        goofcord
+        keypunch
+        tauon
+        picard
+        kdePackages.kdenlive
+        obs-studio
+        obs-studio-plugins.obs-retro-effects
+        krita
+        pixelorama
+        inkscape
+        gimp3-with-plugins
+        gemini-cli
+        wakatime-cli
+        tealdeer
+        bat
+        yazi
+        ffmpeg
+        git-lfs
+        eza
+        tree
+        fzf
+      ]; # Install userspace packages
     };
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [ ];
-    };
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
-    };
-    zoxide = {
-      enable = true;
-      flags = [ "--cmd cd" ];
-    };
-    zsh.enable = true;
-    adb.enable = true;
   };
 
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
   environment = {
     pathsToLink = [ "/share/zsh" ];
     variables = {
@@ -204,6 +162,7 @@ in
     systemPackages = with pkgs; [
       # Basic utitlities
       kitty
+      libreoffice
       kdePackages.ark
       kdePackages.okular
       kdePackages.fcitx5-configtool
@@ -227,6 +186,28 @@ in
       pywalfox-native
       sddm-astronaut
     ];
+  };
+
+  programs = {
+    firefox.enable = true;
+    niri.enable = true;
+    gnome-disks.enable = true;
+    localsend.enable = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [ ];
+    };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
+    };
+    zoxide = {
+      enable = true;
+      flags = [ "--cmd cd" ];
+    };
+    zsh.enable = true;
+    adb.enable = true;
   };
 
   fonts = {
