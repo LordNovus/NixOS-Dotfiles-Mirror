@@ -58,26 +58,6 @@ in
           Enabled = false;
         };
 
-        # Extentions
-        # ExtensionSettings = {
-        #   "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
-        #     installation_mode = "normal_installed";
-        #     private_browsing = true;
-        #   };
-        #   "pywalfox@frewacom.org" = {
-        #     installation_mode = "force_installed";
-        #     private_browsing = false;
-        #   };
-        #   "uBlock0@raymondhill.net" = {
-        #     installation_mode = "force_installed";
-        #     private_browsing = true;
-        #   };
-        #   "@testpilot-containers" = {
-        #     installation_mode = "force_installed";
-        #     private_browsing = false;
-        #   };
-        # };
-
         # Customize home
         FirefoxHome = {
           Search = true;
@@ -115,6 +95,11 @@ in
       profiles = {
         novus = {
           name = "Novus";
+          extensions = {
+            packages = with pkgs.nur.repos.rycee.firefox-addons; [
+              ublock-origin
+            ];
+          };
           # bookmarks.settings = [
           #   {
           #     name = "";
@@ -127,6 +112,7 @@ in
           #     bookmarks = [ ];
           #   }
           # ];
+          containersForce = true;
           containers = {
             work = {
               name = "Work";

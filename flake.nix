@@ -4,6 +4,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # NUR for firefox extensions
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nur, ... } @ inputs:
     let
       system = "x86_64-linux";
     in
@@ -35,6 +41,10 @@
               extraSpecialArgs = { inherit inputs; };
             };
           }
+          nur.modules.nixos.default
+          ({ pkgs, ... }: {
+            # environment.systemPackages = [ pkgs.nur.repos.rycee.firefox-addons ];
+          })
         ];
       };
     };
