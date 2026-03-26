@@ -96,22 +96,28 @@ in
         novus = {
           name = "Novus";
           extensions = {
+            force = true;
             packages = with pkgs.nur.repos.rycee.firefox-addons; [
               ublock-origin
+              multi-account-containers
+              proton-pass
             ];
           };
-          # bookmarks.settings = [
-          #   {
-          #     name = "";
-          #     url = "";
-          #     tags = [ ];
-          #     keyword = "";
-          #   }
-          #   {
-          #     name = "folder";
-          #     bookmarks = [ ];
-          #   }
-          # ];
+          # bookmarks = {
+          #   force = true;
+          #   settings = [
+          #     {
+          #       name = "";
+          #       url = "";
+          #       tags = [ ];
+          #       keyword = "";
+          #     }
+          #     {
+          #       name = "folder";
+          #       bookmarks = [ ];
+          #     }
+          #   ];
+          # };
           containersForce = true;
           containers = {
             work = {
