@@ -78,7 +78,6 @@ in
   };
 
   # Configure bluetooth settings
-  # TODO: Fix bluetooth connectivity issues
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
