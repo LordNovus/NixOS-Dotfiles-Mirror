@@ -88,9 +88,6 @@ in
         PictureInPicture = {
           Enabled = true; # Enable picture in picture
         };
-
-        # TODO: Fix printing on host machine first
-        PrintingEnabled = false; # Disable printing
       };
       profiles = {
         novus = {

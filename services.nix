@@ -45,5 +45,12 @@
         hplip
       ];
     };
+
+    # Network printer discovery
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
   };
 }
