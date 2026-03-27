@@ -115,14 +115,6 @@ in
           #     }
           #   ];
           # };
-          containersForce = true;
-          containers = {
-            work = {
-              name = "Work";
-              color = "green";
-              icon = "briefcase";
-            };
-          };
         };
       };
     };
